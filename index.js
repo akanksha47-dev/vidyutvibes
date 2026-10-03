@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         function updateDesktopButtonState() {
             desktopSearchButton.disabled = (desktopSearchInput.value.trim() === '');
         }
+        
         desktopSearchInput.addEventListener('input', updateDesktopButtonState);
         updateDesktopButtonState();
     }
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         function updateMobileButtonState() {
             mobileSearchButton.disabled = (mobileSearchInput.value.trim() === '');
         }
+        
         mobileSearchInput.addEventListener('input', updateMobileButtonState);
         updateMobileButtonState();
 
@@ -55,10 +57,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (Date.now() - lastSearchIconClickTime < 200) {
             return;
         }
+        
         if (mobileSearchBar && mobileSearchBar.classList.contains('show')) {
             mobileSearchBar.classList.remove('show');
         }
     }
+
     document.addEventListener('click', function(event) {
         if (mobileSearchBar && mobileSearchBtn) {
             if (!mobileSearchBar.contains(event.target) && !mobileSearchBtn.contains(event.target)) {
@@ -66,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
     window.addEventListener('scroll', hideMobileSearchBar);
     
     function openMobileMenu() {
@@ -114,11 +119,13 @@ document.addEventListener('DOMContentLoaded', function() {
         let menuTouchStartX = 0;
         let menuTouchCurrentX = 0;
         const swipeThreshold = 50;
+        
         mobileMenu.addEventListener('touchstart', (e) => {
             menuTouchStartX = e.touches[0].clientX;
             menuTouchCurrentX = menuTouchStartX;
             mobileMenu.style.transition = 'none'; 
         }, { passive: true });
+        
         mobileMenu.addEventListener('touchmove', (e) => {
             menuTouchCurrentX = e.touches[0].clientX;
             const diffX = menuTouchCurrentX - menuTouchStartX;
@@ -126,9 +133,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 mobileMenu.style.transform = `translateX(${diffX}px)`;
             }
         }, { passive: true });
+        
         mobileMenu.addEventListener('touchend', (e) => {
             mobileMenu.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             mobileMenu.style.transform = '';
+            
             if (menuTouchStartX - menuTouchCurrentX > swipeThreshold) {
                 closeMobileMenu();
             }
@@ -142,7 +151,9 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
             let isValid = true;
+            
             document.querySelectorAll(".text-red-500").forEach((el) => el.classList.add("hidden"));
+            
             if (formSubmissionMessage) formSubmissionMessage.classList.add("hidden");
 
             const nameField = document.getElementById("name");
@@ -153,10 +164,25 @@ document.addEventListener('DOMContentLoaded', function() {
             const addressError = document.getElementById("addressError");
             const serviceError = document.getElementById("serviceError");
 
-            if (!nameField || !nameField.value.trim() || nameField.value.length < 2) { isValid = false; if (nameError) nameError.classList.remove("hidden"); }
-            if (!phoneField || !phoneField.value.trim().match(/^[6-9][0-9]{9}$/)) { isValid = false; if (phoneError) phoneError.classList.remove("hidden"); }
-            if (!addressField || !addressField.value.trim() || addressField.value.length < 10) { isValid = false; if (addressError) addressError.classList.remove("hidden"); }
-            if (document.querySelectorAll('input[name="service[]"]:checked').length === 0) { isValid = false; if (serviceError) serviceError.classList.remove("hidden"); }
+            if (!nameField || !nameField.value.trim() || nameField.value.length < 2) {
+                isValid = false;
+                if (nameError) nameError.classList.remove("hidden");
+            }
+            
+            if (!phoneField || !phoneField.value.trim().match(/^[6-9][0-9]{9}$/)) {
+                isValid = false;
+                if (phoneError) phoneError.classList.remove("hidden");
+            }
+            
+            if (!addressField || !addressField.value.trim() || addressField.value.length < 10) {
+                isValid = false;
+                if (addressError) addressError.classList.remove("hidden");
+            }
+            
+            if (document.querySelectorAll('input[name="service[]"]:checked').length === 0) {
+                isValid = false;
+                if (serviceError) serviceError.classList.remove("hidden");
+            }
 
             if (!isValid) {
                 if (formSubmissionMessage) {
@@ -168,9 +194,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             const formData = new FormData(form);
+            
             try {
-                const response = await fetch("quote_process.php", { method: "POST", body: formData, headers: { 'X-Requested-With': 'XMLHttpRequest' } });
+                const response = await fetch("quote_process.php", {
+                    method: "POST",
+                    body: formData,
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                });
+                
                 if (!response.ok) throw new Error('Network response was not ok');
+                
                 const result = await response.json();
 
                 if (result.status === "success") {
@@ -188,6 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             popup.classList.add('top-[-100px]');
                         }, 5000);
                     }
+                    
                     form.reset();
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
@@ -199,6 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } catch (error) {
                 console.error('Form submission error:', error);
+                
                 if (formSubmissionMessage) {
                     formSubmissionMessage.className = "p-4 rounded-md text-center bg-red-100 text-red-700";
                     formSubmissionMessage.textContent = "Connection error. Please check your internet and try again.";
@@ -224,14 +259,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }, { threshold: 0.5 });
+        
         observer.observe(contactPanel);
     }
 
-    window.addEventListener('error', (e) => { console.error('Global error caught:', e.error); return true; });
-    window.addEventListener('unhandledrejection', (e) => { console.error('Unhandled promise rejection:', e.reason); e.preventDefault(); });
+    window.addEventListener('error', (e) => {
+        console.error('Global error caught:', e.error);
+        return true;
+    });
+    
+    window.addEventListener('unhandledrejection', (e) => {
+        console.error('Unhandled promise rejection:', e.reason);
+        e.preventDefault();
+    });
 
     console.log("%cVidyut Vibes", "color: #f59e0b; font-size: 22px; font-weight: bold; text-shadow: 1px 1px 2px #000;");
     console.log("%cWelcome! For developers: Please note that while the front-end is robust, the primary security logic is enforced on the server-side.", "color: #10b981; font-size: 12px;");
+    
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function() {
             this.blur();
