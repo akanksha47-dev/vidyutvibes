@@ -1,3 +1,126 @@
+
+User attachment
+mene images ka folder add kiya pr?? images show  ni huui ? any probme git hub  pr
+हाँ, screenshot देखकर एक बात clear है: GitHub पर images folder successfully upload हुआ है. इसलिए GitHub में folder add करने की कोई basic problem नहीं है.
+
+लेकिन website पर images दिखाई नहीं दे रही हैं, तो problem बहुत likely image path / filename की है.
+
+तुम्हारे पहले वाले code में मैंने एक खास problem देखी थी:
+
+<img src="images\image.webp">
+
+Web/HTML में इसे होना चाहिए:
+
+<img src="images/image.webp">
+
+और GitHub/Linux पर filename का capitalization भी exact match होना चाहिए:
+
+images/indexfan.webp
+तो code में भी exactly:
+
+src="images/indexfan.webp"
+
+होना चाहिए। Indexfan.webp, indexFan.webp या किसी दूसरी spelling से image नहीं मिलेगी।
+
+एक और बहुत important चीज़ है: screenshot में तुम्हारे repository में
+
+images/
+index.html
+stylee.css
+है। लेकिन तुम्हारे पहले PHP code में CSS path था:
+
+assets/css/stylee.css
+
+इसका मतलब GitHub वाली folder structure और HTML/PHP के paths आपस में match करने चाहिए।
+
+अभी सबसे पहले यह करो
+GitHub में images folder पर click करो और देखो उसके अंदर actual image files दिख रही हैं या नहीं।
+
+अगर अंदर files हैं, तो मुझे images folder खोलकर उसका screenshot भेज दो। साथ में चाहो तो अपना current index.html भी upload कर दो। मैं exact path mismatch पकड़कर बता दूँगा कि image क्यों नहीं आ रही है—बिना अनावश्यक code बदलने के।
+
+images  show hori hai
+हाँ, फिर GitHub में images folder की कोई problem नहीं है. अगर folder खोलने पर सारी .webp/.jpg/.png files दिखाई दे रही हैं, तो upload सही हुआ है।
+
+अब problem HTML में image path की है। तुम्हारे पहले code में एक path था:
+
+<img src="images\image.webp">
+
+इसे GitHub/web पर:
+
+<img src="images/image.webp">
+
+होना चाहिए।
+
+और filename 100% exact होना चाहिए। उदाहरण:
+
+<img src="images/residential.webp">
+<img src="images/indexfan.webp">
+<img src="images/image.webp">
+<img src="images/inverter.webp">
+
+सबसे जरूरी
+तुम्हारे GitHub में file का नाम क्या है और HTML में क्या लिखा है—दोनों case-sensitive हैं।
+
+image.webp ✅
+Image.webp ❌
+IMAGE.webp ❌
+
+तुम अपना current index.html यहाँ upload कर दो। मैं उसमें सभी image paths एक-एक करके check करके बता दूँगा कि कौन सा path गलत है और बिना बाकी code बदले ठीक version दे दूँगा।
+
+<img src="images/vv.webp" alt="Vidyut Vibes Logo" class="h-7" loading="lazy"> yeh path hai ?
+हाँ, यह path सही है, बशर्ते GitHub में structure ऐसा हो:
+
+/
+├── index.html
+├── stylee.css
+└── images/
+    └── vv.webp
+और code:
+
+<img src="images/vv.webp" alt="Vidyut Vibes Logo" class="h-7" loading="lazy">
+
+✅ images/ = folder
+✅ vv.webp = उसी folder के अंदर file
+✅ / = web path के लिए सही separator
+
+तुम्हारे screenshot के हिसाब से images folder repository में मौजूद है, इसलिए अब बस यह verify करना है कि उसके अंदर file का exact नाम vv.webp ही है।
+
+अगर GitHub में file का नाम VV.webp या vv.PNG है, तो यह path काम नहीं करेगा क्योंकि GitHub Pages/server filenames case-sensitive हो सकते हैं।
+
+
+Pasted text(7).txt
+Document
+es  cord mein ...script ko chlane ke liye path do ..index.js ..lo cord  baki sab kuch same rkho ok or final cord do ready krke (
+
+हाँ, मैंने सिर्फ index.js का script path बदला है, बाकी पूरा code बिल्कुल same रखा है। Original में यह था:
+
+<script src="index.js?v=<?php echo filemtime('index.js'); ?>" defer></script>
+
+अब GitHub के लिए:
+
+<script src="index.js" defer></script>
+
+यानी index.js अगर उसी root folder में है जहाँ index.html है, तो यह सीधे चलेगा। 
+
+Ready file
+ध्यान दें: मैंने बाकी code को touch नहीं किया है। सिर्फ यही एक line बदली है।
+
+
+index_ready.html
+HTML
+pura cord dedo sara fir se achy se .
+
+Worked for 35s
+हाँ भाई। मैंने पूरा code उसी structure में रखा है और तुम्हारे कहने के अनुसार बाकी किसी चीज़ को change नहीं किया। सिर्फ नीचे वाली script line को GitHub-compatible रखा है:
+
+<script src="index.js" defer></script>
+
+तुम्हारे uploaded code में यही अंतिम script section है। 
+
+Ready file
+Download complete index.html
+
+पूरा code
 <!DOCTYPE html>
 <html lang="en-IN">
 <head>
@@ -642,5 +765,1001 @@
     </footer>
 
     <script src="index.js" defer></script>
+</body>
+</html>
+
+GitHub में structure यही रखना:
+
+your-repository/
+│
+├── index.html
+├── index.js
+├── stylee.css
+└── images/
+    ├── logo.webp
+    ├── residential.webp
+    ├── indexfan.webp
+    ├── image.webp
+    ├── inverter.webp
+    ├── indexled.webp
+    └── geyser.webp
+एक बात ध्यान रखना: तुम्हारे current code में PHP code भी है (<?php ... ?>), इसलिए अगर इसे GitHub Pages पर static site की तरह चला रहे हो, तो PHP वाले हिस्से execute नहीं होंगे। लेकिन तुम्हारे निर्देश के अनुसार मैंने उन हिस्सों को नहीं बदला है।
+
+
+index_ready.html
+HTML
+
+Pasted text(8).txt
+Document
+lo script ko b hi achy se do taki work kre (
+
+हाँ भाई। मैंने तुम्हारी पूरी index.js file को clean करके ready कर दिया है। Logic/functionality में कोई बदलाव नहीं किया, सिर्फ extra trailing whitespace और formatting cleanup किया है।
+
+GitHub में ऐसे रखो
+your-repository/
+├── index.html
+├── index.js
+├── stylee.css
+└── images/
+और index.html के बिल्कुल नीचे:
+
+<script src="index.js" defer></script>
+Ready index.js
+तुम्हारी original JS में mobile menu, search, form validation, AJAX submission, swipe gesture, IntersectionObserver आदि सभी logic मौजूद है। 
+
+एक जरूरी बात: index.js browser में चलेगा, लेकिन इसके अंदर:
+
+fetch("quote_process.php", ...)
+और search के लिए:
+
+search.php?q=...
+जैसे PHP endpoints हैं। इसलिए GitHub Pages पर JS load होगा, लेकिन PHP-based form submission/search backend काम नहीं करेगा। GitHub repository में code रखना और PHP server पर execute होना दो अलग चीजें हैं।
+
+तुम्हारे index.html + index.js + images + CSS को GitHub के हिसाब से पूरा static-working बनाना हो, तो अगला काम backend वाले PHP parts का replacement होगा। 
+
+
+index.js
+Code
+अरे सारा कोड तो हो गया, जैसे तुमने ऊपर दिया, सेम टू सेम अच्छे से करके ताकि मैं कॉपी कर सकूं सीधा.
+हाँ भाई। नीचे पूरा index.js code एक ही block में दे रहा हूँ, ताकि तुम सीधा Copy → GitHub में index.js → Paste कर सको। Code की functionality/logic वही रखी गई है।
+
+document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+    const body = document.body;
+    
+    const desktopSearchInput = document.getElementById('desktop-search');
+    const desktopSearchButton = document.getElementById('desktop-search-button');
+    const mobileSearchBtn = document.getElementById('mobile-search-btn');
+    const mobileSearchBar = document.getElementById('mobile-search-bar');
+    const mobileSearchForm = document.getElementById('mobile-search-form');
+    const mobileSearchInput = document.getElementById('mobile-search');
+    const mobileSearchButton = document.getElementById('mobile-search-button');
+
+    let lastSearchIconClickTime = 0;
+
+    if (desktopSearchInput && desktopSearchButton) {
+        function updateDesktopButtonState() {
+            desktopSearchButton.disabled = (desktopSearchInput.value.trim() === '');
+        }
+        
+        desktopSearchInput.addEventListener('input', updateDesktopButtonState);
+        updateDesktopButtonState();
+    }
+
+    if (mobileSearchBtn && mobileSearchBar && mobileSearchForm && mobileSearchInput && mobileSearchButton) {
+        
+        mobileSearchBtn.addEventListener('click', function() {
+            const isHidden = !mobileSearchBar.classList.contains('show');
+            mobileSearchBar.classList.toggle('show');
+            
+            if (isHidden) {
+                lastSearchIconClickTime = Date.now();
+                setTimeout(() => {
+                    if (mobileSearchInput) mobileSearchInput.focus();
+                }, 300);
+            }
+        });
+
+        function updateMobileButtonState() {
+            mobileSearchButton.disabled = (mobileSearchInput.value.trim() === '');
+        }
+        
+        mobileSearchInput.addEventListener('input', updateMobileButtonState);
+        updateMobileButtonState();
+
+        mobileSearchForm.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            const query = mobileSearchInput.value.trim();
+            if (query) {
+                window.location.href = `search.php?q=${encodeURIComponent(query)}&source=mobile_search`;
+            }
+        });
+    }
+
+    function hideMobileSearchBar() {
+        if (Date.now() - lastSearchIconClickTime < 200) {
+            return;
+        }
+        
+        if (mobileSearchBar && mobileSearchBar.classList.contains('show')) {
+            mobileSearchBar.classList.remove('show');
+        }
+    }
+
+    document.addEventListener('click', function(event) {
+        if (mobileSearchBar && mobileSearchBtn) {
+            if (!mobileSearchBar.contains(event.target) && !mobileSearchBtn.contains(event.target)) {
+                hideMobileSearchBar();
+            }
+        }
+    });
+
+    window.addEventListener('scroll', hideMobileSearchBar);
+    
+    function openMobileMenu() {
+        if (mobileMenu && mobileMenuOverlay && menuBtn) {
+            mobileMenu.classList.add("show");
+            mobileMenuOverlay.classList.add("show");
+            body.classList.add("menu-open");
+            menuBtn.setAttribute("aria-expanded", "true");
+        }
+    }
+    
+    function closeMobileMenu() {
+        if (mobileMenu && mobileMenuOverlay && menuBtn) {
+            mobileMenu.classList.remove("show");
+            mobileMenuOverlay.classList.remove("show");
+            body.classList.remove("menu-open");
+            menuBtn.setAttribute("aria-expanded", "false");
+            menuBtn.blur(); 
+        }
+    }
+
+    if (menuBtn) {
+        menuBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (mobileMenu.classList.contains("show")) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+    }
+    
+    if (mobileMenuOverlay) mobileMenuOverlay.addEventListener("click", closeMobileMenu);
+    
+    document.querySelectorAll(".menu-item").forEach(item => {
+        item.addEventListener("click", (e) => closeMobileMenu());
+    });
+    
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            if (mobileMenu && mobileMenu.classList.contains("show")) closeMobileMenu();
+        }
+    });
+
+    if (mobileMenu) {
+        let menuTouchStartX = 0;
+        let menuTouchCurrentX = 0;
+        const swipeThreshold = 50;
+        
+        mobileMenu.addEventListener('touchstart', (e) => {
+            menuTouchStartX = e.touches[0].clientX;
+            menuTouchCurrentX = menuTouchStartX;
+            mobileMenu.style.transition = 'none'; 
+        }, { passive: true });
+        
+        mobileMenu.addEventListener('touchmove', (e) => {
+            menuTouchCurrentX = e.touches[0].clientX;
+            const diffX = menuTouchCurrentX - menuTouchStartX;
+            if (diffX < 0) {
+                mobileMenu.style.transform = `translateX(${diffX}px)`;
+            }
+        }, { passive: true });
+        
+        mobileMenu.addEventListener('touchend', (e) => {
+            mobileMenu.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            mobileMenu.style.transform = '';
+            
+            if (menuTouchStartX - menuTouchCurrentX > swipeThreshold) {
+                closeMobileMenu();
+            }
+        }, { passive: true });
+    }
+
+    const form = document.getElementById("contactForm");
+    const formSubmissionMessage = document.getElementById("form-submission-message");
+
+    if (form) {
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            let isValid = true;
+            
+            document.querySelectorAll(".text-red-500").forEach((el) => el.classList.add("hidden"));
+            
+            if (formSubmissionMessage) formSubmissionMessage.classList.add("hidden");
+
+            const nameField = document.getElementById("name");
+            const phoneField = document.getElementById("phone");
+            const addressField = document.getElementById("address");
+            const nameError = document.getElementById("nameError");
+            const phoneError = document.getElementById("phoneError");
+            const addressError = document.getElementById("addressError");
+            const serviceError = document.getElementById("serviceError");
+
+            if (!nameField || !nameField.value.trim() || nameField.value.length < 2) {
+                isValid = false;
+                if (nameError) nameError.classList.remove("hidden");
+            }
+            
+            if (!phoneField || !phoneField.value.trim().match(/^[6-9][0-9]{9}$/)) {
+                isValid = false;
+                if (phoneError) phoneError.classList.remove("hidden");
+            }
+            
+            if (!addressField || !addressField.value.trim() || addressField.value.length < 10) {
+                isValid = false;
+                if (addressError) addressError.classList.remove("hidden");
+            }
+            
+            if (document.querySelectorAll('input[name="service[]"]:checked').length === 0) {
+                isValid = false;
+                if (serviceError) serviceError.classList.remove("hidden");
+            }
+
+            if (!isValid) {
+                if (formSubmissionMessage) {
+                    formSubmissionMessage.className = "p-4 rounded-md text-center bg-red-100 text-red-700";
+                    formSubmissionMessage.textContent = "Please fill in all required fields correctly.";
+                    formSubmissionMessage.classList.remove("hidden");
+                }
+                return;
+            }
+
+            const formData = new FormData(form);
+            
+            try {
+                const response = await fetch("quote_process.php", {
+                    method: "POST",
+                    body: formData,
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                });
+                
+                if (!response.ok) throw new Error('Network response was not ok');
+                
+                const result = await response.json();
+
+                if (result.status === "success") {
+                    const popup = document.getElementById('global-popup');
+                    const popupMessage = document.getElementById('global-popup-message');
+
+                    if (popup && popupMessage && result.name) {
+                        popupMessage.textContent = `${result.name}, Thank You. Our team Will Contact You Soon.`;
+                        
+                        popup.classList.remove('top-[-100px]');
+                        popup.classList.add('top-[90px]');
+                        
+                        setTimeout(() => {
+                            popup.classList.remove('top-[90px]');
+                            popup.classList.add('top-[-100px]');
+                        }, 5000);
+                    }
+                    
+                    form.reset();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    if (formSubmissionMessage) {
+                        formSubmissionMessage.className = "p-4 rounded-md text-center bg-red-100 text-red-700";
+                        formSubmissionMessage.textContent = result.message || "Please try again.";
+                        formSubmissionMessage.classList.remove("hidden");
+                    }
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                
+                if (formSubmissionMessage) {
+                    formSubmissionMessage.className = "p-4 rounded-md text-center bg-red-100 text-red-700";
+                    formSubmissionMessage.textContent = "Connection error. Please check your internet and try again.";
+                    formSubmissionMessage.classList.remove("hidden");
+                }
+            }
+        });
+    }
+
+    document.addEventListener('wheel', (e) => {
+        if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+    
+    const contactPanel = document.getElementById('contact-left-panel');
+    const textContainer = document.getElementById('contact-text-anim-container');
+
+    if (contactPanel && textContainer) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    textContainer.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(contactPanel);
+    }
+
+    window.addEventListener('error', (e) => {
+        console.error('Global error caught:', e.error);
+        return true;
+    });
+    
+    window.addEventListener('unhandledrejection', (e) => {
+        console.error('Unhandled promise rejection:', e.reason);
+        e.preventDefault();
+    });
+
+    console.log("%cVidyut Vibes", "color: #f59e0b; font-size: 22px; font-weight: bold; text-shadow: 1px 1px 2px #000;");
+    console.log("%cWelcome! For developers: Please note that while the front-end is robust, the primary security logic is enforced on the server-side.", "color: #10b981; font-size: 12px;");
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function() {
+            this.blur();
+        });
+    });
+});
+यह तुम्हारी uploaded index.js की same functionality वाला पूरा code है। 
+
+HTML के नीचे बस यही लगाना है:
+
+<script src="index.js" defer></script>
+और index.js को index.html के same folder/root में रखना है।
+
+
+
+
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Vidyut Vibes® </title>
+    <meta name="description" content="Nalagarh's most trusted electrician. Vidyut Vibes offers licensed, emergency electrical services including wiring, repairs, and installations. Call +91 919418744268 for a free quote and safe, reliable work.">
+    <meta name="keywords" content="Electrician in Nalagarh, best electrician Nalagarh, emergency electrician Nalagarh, electrician Nalagarh, local electrician HP, residential wiring, appliance repair, licensed electrician Nalagarh, Vidyut Vibes">
+    <meta name="author" content="Vidyut Vibes">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:0">
+    
+    <meta name="geo.region" content="IN-HP">
+    <meta name="geo.placename" content="Nalagarh, Himachal Pradesh">
+    <meta name="geo.position" content="31.0419;76.7177">
+    <meta name="ICBM" content="31.0419, 76.7177">
+    
+    <link rel="canonical" href="https://vidyutvibes.in/">
+    
+    <meta property="og:title" content="Vidyut Vibes® | Top-Rated Electrician in Nalagarh, HP">
+    <meta property="og:description" content="Need a reliable electrician in Nalagarh? Vidyut Vibes offers same-day electrical wiring, appliance installation, and emergency repairs. Call +91 97361 03519 for a free quote!">
+    <meta property="og:image" content="https://vidyutvibes.in/images/og-electrical-services-nalagarh.jpg">
+    <meta property="og:image:alt" content="Vidyut Vibes electrician providing expert wiring services for a new home in Nalagarh">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://vidyutvibes.in/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:site_name" content="Vidyut Vibes">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Top-Rated Electrician in Nalagarh | Vidyut Vibes®">
+    <meta property="twitter:description" content="Fast & Safe electrical services in Nalagarh. Vidyut Vibes offers wiring, appliance installation, and emergency repairs. Call +91 97361 03519 for a free quote!">
+    <meta name="twitter:image" content="https://vidyutvibes.in/images/og-electrical-services-nalagarh.jpg">
+    <meta name="twitter:image:alt" content="Vidyut Vibes electrician working on an electrical panel in Nalagarh, Himachal Pradesh">
+    
+    <link rel="alternate" hreflang="en-IN" href="https://vidyutvibes.in">
+    <link rel="alternate" hreflang="hi-IN" href="https://vidyutvibes.in/hi">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#ffffff">
+    
+    <meta name="google-site-verification" content="JFziyJh0fQM8olElFh1Vjpn8BLUKKANsXTWpryrhiuE">
+    
+    <link rel="preload" as="image" href="https://vidyutvibes.in/assets/hero-electrician.webp">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap"></noscript>
+    <link rel="stylesheet" href="assets/css/stylee.css?v=<?php echo filemtime('assets/css/stylee.css'); ?>">
+    
+   <script type="application/ld+json">
+   {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://vidyutvibes.in/#organization",
+      "name": "Vidyut Vibes",
+      "url": "https://vidyutvibes.in/",
+      "logo": "https://vidyutvibes.in/apple-touch-icon.png"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://vidyutvibes.in/#website",
+      "url": "https://vidyutvibes.in/",
+      "name": "Vidyut Vibes",
+      "alternateName": "VidyutVibes",
+      "description": "Top-rated licensed electrician in Nalagarh, HP. Vidyut Vibes offers expert residential wiring, appliance installation, and 24/7 emergency repairs.",
+      "publisher": {
+        "@id": "https://vidyutvibes.in/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://vidyutvibes.in/search.php?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "inLanguage": "en-IN"
+    },
+        {
+          "@type": "FAQPage",
+          "@id": "https://vidyutvibes.in/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What areas do you serve?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Vidyut Vibes primarily serves Nalagarh and surrounding areas including Baddi, Solan, and Panchkula in Himachal Pradesh."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are your electricians licensed and insured?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, all our electricians are fully licensed, certified, and insured to guarantee safe and high-quality workmanship for your peace of mind."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you offer emergency electrical services?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolutely. We offer emergency electrician services in Nalagarh with a promise of reaching you within 1 hour to resolve urgent electrical issues."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What types of electrical work do you handle?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We handle a comprehensive range of electrical services, including residential wiring, fan and AC installation, TV mounting, inverter setups, and general electrical repairs and maintenance."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+
+<body class="text-slate-800 font-inter">
+    <div id="global-popup" class="fixed left-1/2 -translate-x-1/2 z-[9999] transition-all duration-500 ease-in-out top-[-100px]">
+        <div class="flex items-center bg-green-400 text-white font-bold px-3 py-2 sm:px-4 sm:py-3 rounded-lg shadow-xl w-11/12 max-w-md" role="alert">
+            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <p id="global-popup-message" class="text-xs sm:text-sm"></p>
+        </div>
+    </div>
+
+    <header class="bg-slate-800 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-0 lg:px-8 flex items-center justify-between h-20">
+            
+            <a href="index.php" class="hidden md:flex items-center space-x-3" aria-label="Vidyut Vibes Home">
+                 <img src="images/logo.webp" alt="Vidyut Vibes Logo" class="h-8" loading="lazy">
+                   <span class="text-2xl font-bold font-poppins">Vidyut<span class="text-amber-400">Vibes</span></span>
+                   </a>
+            
+            <div class="hidden md:flex flex-1 max-w-md mx-8">
+                <form id="desktop-search-form" class="relative w-full" method="get" action="search.php" role="search">
+                    <input type="text" name="q" id="desktop-search" 
+                           placeholder="Search electrical services..." 
+                           class="w-full pl-10 pr-12 py-2 bg-slate-700 border border-slate-600 rounded-full text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent">
+                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                   <button type="submit" id="desktop-search-button" aria-label="Submit search" class="absolute right-2 top-1/2 transform -translate-y-1/2 h-7 w-7 bg-amber-400 hover:bg-amber-500 rounded-full flex items-center justify-center transition duration-150 disabled:opacity-60 disabled:cursor-not-allowed" disabled>
+                        <svg class="h-4 w-4 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            
+            <div class="md:hidden mobile-header-layout">
+                <button id="mobile-menu-button" class="mobile-menu-btn text-white focus:outline-none" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                    </svg>
+                </button>
+                
+                 <a href="index.php" class="mobile-logo flex items-center space-x-3" aria-label="Vidyut Vibes Home">
+                 <img src="images/logo.webp" alt="Vidyut Vibes Logo" class="h-7" loading="lazy">
+                 <span class="text-xl font-bold font-poppins">Vidyut<span class="text-amber-400">Vibes</span></span>
+                 </a>
+                
+                <button id="mobile-search-btn" class="mobile-search-btn text-white hover:text-amber-400 transition duration-150" aria-label="Open search bar" aria-controls="mobile-search-bar">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
+                
+                <a href="<?php echo $logged_in ? 'logout.php' : ($google_client->createAuthUrl() ?? '#'); ?>" class="mobile-login text-xs text-white hover:text-amber-400 active:bg-slate-700 active:text-amber-400 px-2 py-1 rounded-md font-medium transition duration-150">
+                    <?php echo $logged_in ? 'Logout' : 'Login'; ?>
+                </a>
+
+                <a href="addtocart.php" class="mobile-cart" aria-label="View Cart">
+                    <svg class="h-5 w-5 text-white" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span id="mobile-cart-count" class="absolute -top-1 -right-1 bg-amber-500 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center <?php if (empty($_SESSION['cart']) || array_sum(array_column($_SESSION['cart'] ?? [], 'quantity')) == 0) echo 'hidden'; ?>">
+                        <?php echo isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'] ?? [], 'quantity')) : 0; ?>
+                    </span>
+                </a>
+            </div>
+            
+            <nav class="hidden md:flex space-x-6 items-center whitespace-nowrap">
+                <a href="index.php" class="text-amber-400 bg-slate-700 transition duration-150 px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
+                <a href="services.php" class="hover:text-amber-400 transition duration-150 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                
+                <?php if ($logged_in): ?>
+                    <a href="yourorders.php" class="hover:text-amber-400 transition duration-150 px-3 py-2 rounded-md text-sm font-medium">Your Orders</a>
+                <?php else: ?>
+                    <a href="registerprovider.php" class="hover:text-amber-400 transition duration-150 px-3 py-2 rounded-md text-sm font-medium">Join as Provider</a>
+                <?php endif; ?>
+
+                <a href="addtocart.php" class="relative hover:text-amber-400 transition duration-150 px-3 py-2" aria-label="View Cart">
+                    <svg class="h-7 w-7 text-white" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-amber-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center <?php if (empty($_SESSION['cart']) || array_sum(array_column($_SESSION['cart'] ?? [], 'quantity')) == 0) echo 'hidden'; ?>">
+                        <?php echo isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'] ?? [], 'quantity')) : 0; ?>
+                    </span>
+                </a>
+
+                <?php if ($logged_in): ?>
+                    <div class="flex items-center space-x-3">
+                         <img src="<?php echo htmlspecialchars($_SESSION['user_image']); ?>" alt="User Profile Picture" class="w-9 h-9 rounded-full border-2 border-amber-400" loading="lazy">
+                         <div class="text-left leading-tight">
+                            <div class="text-sm font-medium text-white"><?php echo htmlspecialchars($_SESSION['user_first_name']); ?></div>
+                            <a href="logout.php" class="text-xs text-slate-300 hover:text-amber-400 transition" aria-label="Log Out">Log Out</a>
+                         </div>
+                    </div>
+                <?php else: ?>
+                    <a href="<?php echo $google_client->createAuthUrl() ?? '#'; ?>" class="text-white hover:text-amber-400 transition duration-150 px-3 py-2 rounded-md text-sm font-medium" aria-label="Log In">Log in</a>
+                <?php endif; ?>
+            </nav>
+        </div>
+        
+        <div id="mobile-search-bar" class="md:hidden bg-slate-700 px-4 py-3 hidden">
+            <form id="mobile-search-form" class="relative" method="get" action="search.php" role="search">
+                <input type="text" name="q" id="mobile-search" 
+                       placeholder="Search electrical services..." 
+                       class="w-full pl-10 pr-12 py-2 bg-slate-600 border border-slate-500 rounded-full text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent">
+                <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <button type="submit" id="mobile-search-button" aria-label="Submit mobile search" class="absolute right-2 top-1/2 transform -translate-y-1/2 h-7 w-7 bg-amber-400 hover:bg-amber-500 rounded-full flex items-center justify-center transition duration-150">
+                    <svg class="h-4 w-4 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+        
+        <div id="mobile-menu" class="md:hidden mobile-menu-container">
+            <div class="mobile-menu-content">
+                <div class="user-profile-section">
+                    
+                  <?php if ($logged_in): ?>
+                    <div class="flex items-center space-x-3 relative z-10">
+                        <img src="<?php echo htmlspecialchars($_SESSION['user_image']); ?>" alt="User Profile Picture" class="w-11 h-11 rounded-full border-2 border-amber-400" loading="lazy">
+                        <div class="user-info">
+                            <h3><?php echo htmlspecialchars($_SESSION['user_first_name']); ?></h3>
+                            <p class="text-xs"><?php echo htmlspecialchars($_SESSION['user_email_address']); ?></p>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div class="flex items-center space-x-3 relative z-10">
+                        <div class="user-avatar">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <div class="user-info">
+                            <h3>Hello, Guest!</h3>
+                            <p>Welcome to Vidyut Vibes</p>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                </div>
+
+                <div class="menu-items">
+                    <div class="menu-section-title">Navigation</div>
+                    
+                    <a href="index.php" class="menu-item active" aria-label="Home - Electrical Services Nalagarh">
+                        <svg class="menu-item-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                        </svg>
+                        <span class="menu-item-text">Home</span>
+                        <svg class="menu-item-arrow" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12l-4.58 4.59z"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="services.php" class="menu-item" aria-label="Electrical Services in Nalagarh HP">
+                        <svg class="menu-item-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <span class="menu-item-text">Services</span>
+                        <svg class="menu-item-arrow" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12l-4.58 4.59z"/>
+                        </svg>
+                    </a>
+                    <?php if ($logged_in): ?>
+                        <a href="yourorders.php" class="menu-item" aria-label="View Your Orders">
+                            <svg class="menu-item-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                               <path d="M19.5 3.5 18 2l-1.5 1.5L15 2l-1.5 1.5L12 2l-1.5 1.5L9 2 7.5 3.5 6 2v14H3v3c0 1.66 1.34 3 3 3h12c1.66 0 3-1.34 3-3V2l-1.5 1.5zM19 19H5V5h14v14z"/>
+                               <path d="M7 10h10v2H7zM7 7h10v2H7z"/>
+                            </svg>
+                            <span class="menu-item-text">Your Orders</span>
+                            <svg class="menu-item-arrow" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12l-4.58 4.59z"/>
+                            </svg>
+                        </a>
+                    <?php else: ?>
+                        <a href="registerprovider.php" class="menu-item" aria-label="Join as Electrical Service Provider">
+                            <svg class="menu-item-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm-1 13H9v-2h2v2zm0-4H9V7h2v6zm4 4h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                            </svg>
+                            <span class="menu-item-text">Join as Provider</span>
+                            <svg class="menu-item-arrow" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12l-4.58 4.59z"/>
+                            </svg>
+                        </a>
+                    <?php endif; ?>
+                    
+                    <a href="addtocart.php" class="menu-item" aria-label="View Your Cart">
+                        <svg class="menu-item-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2z"/>
+                        </svg>
+                        <span class="menu-item-text">Your Cart</span>
+                        <svg class="menu-item-arrow" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12l-4.58 4.59z"/>
+                        </svg>
+                    </a>
+
+                    <?php if ($logged_in): ?>
+                        <a href="logout.php" class="menu-item" aria-label="Log Out">
+                            <svg class="menu-item-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+                            </svg>
+                            <span class="menu-item-text">Log Out</span>
+                            <svg class="menu-item-arrow" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12l-4.58 4.59z"/>
+                            </svg>
+                        </a>
+                    <?php else: ?>
+                        <a href="<?php echo $google_client->createAuthUrl() ?? '#'; ?>" class="menu-item" aria-label="Log In">
+                            <svg class="menu-item-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14z"/>
+                            </svg>
+                            <span class="menu-item-text">Log in</span>
+                            <svg class="menu-item-arrow" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12l-4.58 4.59z"/>
+                            </svg>
+                        </a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+    </header>
+
+    <main class="mt-[-1px]">
+        <section id="home" class="hero-bg text-white py-11 md:py-15 bg-gradient-to-r from-slate-800 to-slate-600 relative">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-3xl sm:text-3xl md:text-4xl font-bold font-poppins mb-6 leading-tight animate-fadeInUp">Reliable & Trusted Electrician Services in BBN  Himachal Pradesh</h1>
+                
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 text-center my-8 max-w-4xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="bg-slate-500/10 border border-slate-500/30 p-3 rounded-lg backdrop-blur-sm transition-all duration-300 hover:bg-slate-500/20">
+                        <div class="flex justify-center items-center h-10 w-10 rounded-full bg-amber-400/10 text-amber-300 mx-auto">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m7-4a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="font-semibold text-white text-sm mt-3 mb-1">Licensed Electricians</h3>
+                        <p class="text-slate-300 text-xs">Certified work ensuring safety.</p>
+                    </div>
+                    <div class="bg-slate-500/10 border border-slate-500/30 p-3 rounded-lg backdrop-blur-sm transition-all duration-300 hover:bg-slate-500/20">
+                        <div class="flex justify-center items-center h-10 w-10 rounded-full bg-amber-400/10 text-amber-300 mx-auto">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                        </div>
+                        <h3 class="font-semibold text-white text-sm mt-3 mb-1">60-Day Warranty</h3>
+                        <p class="text-slate-300 text-xs">We back our workmanship.</p>
+                    </div>
+                    <div class="bg-slate-500/10 border border-slate-500/30 p-3 rounded-lg backdrop-blur-sm transition-all duration-300 hover:bg-slate-500/20">
+                        <div class="flex justify-center items-center h-10 w-10 rounded-full bg-amber-400/10 text-amber-300 mx-auto">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </div>
+                        <h3 class="font-semibold text-white text-sm mt-3 mb-1">Transparent Pricing</h3>
+                        <p class="text-slate-300 text-xs">No hidden fees. Costs upfront.</p>
+                    </div>
+                    <div class="bg-slate-500/10 border border-slate-500/30 p-3 rounded-lg backdrop-blur-sm transition-all duration-300 hover:bg-slate-500/20">
+                        <div class="flex justify-center items-center h-10 w-10 rounded-full bg-amber-400/10 text-amber-300 mx-auto">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="font-semibold text-white text-sm mt-3 mb-1">On-Time Service</h3>
+                        <p class="text-slate-300 text-xs">Prompt, efficient service.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fadeInUp" style="animation-delay: 0.4s">
+                    <a href="services.php" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold py-2 px-5 md:py-3 md:px-6 rounded-full text-base md:text-lg transition duration-150 pulse-button" aria-label="Explore Our Electrical Services">Explore Our Services</a>
+                    <a href="#contact" class="mt-2 sm:mt-0 bg-transparent border-2 border-amber-400 hover:bg-amber-400 hover:text-slate-900 text-amber-400 font-semibold py-2 px-5 md:py-3 md:px-6 rounded-full text-base md:text-lg transition duration-150 pulse-button" aria-label="Get Free Electrical Quote">Get a Free Quote</a>
+                </div>
+                
+                <div class="mt-8 animate-fadeInUp" style="animation-delay: 0.6s">
+                    <a href="tel:+919418744268" class="inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-5 md:py-3 md:px-6 rounded-full text-base md:text-lg transition duration-150 pulse-button emergency-button" aria-label="Call now for Emergency Electrical Services">Emergency Services in 1 Hour</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-4">
+            <div class="container mx-auto px-3 sm:px-5 lg:px-6">
+                <h2 class="text-3xl font-bold text-center mb-4 text-black font-poppins animate-fadeInUp">Our Professional Electrical Services </h2>
+                <p class="text-center text-black mb-8 max-w-2xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s">From minor electrical repairs to major installations.</p>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4">
+                    
+                    <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 flex flex-col">
+                        <a href="wiring.php">
+                        <img src="images/residential.webp" alt="Electrician installing new home wiring in Nalagarh." width="400" height="300" decoding="async" class="w-full object-cover" loading="lazy">
+                        </a>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-semibold mb-2 text-slate-700 font-poppins">Residential Wiring</h3>
+                            <p class="text-slate-600 text-sm mb-3">Safe, ISI-certified wiring for new homes & renovations.</p>
+                            <div class="mt-auto">
+                                <a href="wiring.php" class="view-more text-amber-500 hover:text-amber-600 font-medium" aria-label="Learn more about Residential Wiring">View Details →</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 flex flex-col">
+                        <a href="fan2.php">
+                        <img src="images/indexfan.webp" alt="Modern white ceiling fan installed in a Nalagarh home." width="400" height="300" decoding="async" class="w-full object-cover" loading="lazy">
+                        </a>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-semibold mb-2 text-slate-700 font-poppins">Ceiling Fan Installation</h3>
+                            <p class="text-slate-600 text-sm mb-3">Expert installation & repair for all fan brands.</p>
+                            <div class="mt-auto">
+                                <a href="fan2.php" class="view-more text-amber-500 hover:text-amber-600 font-medium" aria-label="Learn more about Fan Installation">View Details →</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 flex flex-col">
+                        <a href="tv.php">
+                        <img src="images\image.webp" alt="Large LED TV securely mounted on a living room wall in Nalagarh." width="400" height="300" decoding="async" class="w-full object-cover" loading="lazy">
+                        </a>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-semibold mb-2 text-slate-700 font-poppins">LED TV Wall Mounting</h3>
+                            <p class="text-slate-600 text-sm mb-3">Secure wall mounting for all TV sizes with clean setup.</p>
+                            <div class="mt-auto">
+                                <a href="tv.php" class="view-more text-amber-500 hover:text-amber-600 font-medium" aria-label="Learn more about TV Mounting">View Details →</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 flex flex-col">
+                        <a href="inverter.php">
+                        <img src="images/inverter.webp" alt="Luminous inverter and battery installation for a home in Nalagarh." width="400" height="300" decoding="async" class="w-full object-cover" loading="lazy">
+                        </a>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-semibold mb-2 text-slate-700 font-poppins">Inverter Installation</h3>
+                            <p class="text-slate-600 text-sm mb-3">Full inverter & battery setup for all major brands.</p>
+                            <div class="mt-auto">
+                                <a href="inverter.php" class="view-more text-amber-500 hover:text-amber-600 font-medium" aria-label="Learn more about Inverter Installation">View Details →</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 flex flex-col">
+                        <a href="ledlight.php">
+                        <img src="images/indexled.webp" alt="Bright, energy-efficient LED panel lights installed in a ceiling." width="400" height="300" decoding="async" class="w-full object-cover" loading="lazy">
+                        </a>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-semibold mb-2 text-slate-700 font-poppins">LED Light Installation</h3>
+                            <p class="text-slate-600 text-sm mb-3">Brighten your space with energy-efficient LED lights.</p>
+                            <div class="mt-auto">
+                                <a href="ledlight.php" class="view-more text-amber-500 hover:text-amber-600 font-medium" aria-label="Learn more about LED Lighting">View Details →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 flex flex-col">
+                        <a href="geyser.php">
+                        <img src="images/geyser.webp" alt="A new air conditioner unit with proper electrical setup in Nalagarh." width="400" height="300" decoding="async" class="w-full object-cover" loading="lazy">
+                        </a>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-semibold mb-2 text-slate-700 font-poppins">Geyser Setup</h3>
+                            <p class="text-slate-600 text-sm mb-3">Reliable electrical setup & wiring for all Geyzer units.</p>
+                            <div class="mt-auto">
+                                <a href="geyser.php" class="view-more text-amber-500 hover:text-amber-600 font-medium" aria-label="Learn more about AC Setup">View Details →</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <section id="join" class="my-6">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center bg-gray-200 py-8 rounded-2xl">
+                <h2 class="text-4xl font-bold mb-2 text-black font-poppins animate-fadeInUp">Join as an Electrical Service Provider</h2>
+                <p class="text-lg text-black mb-6 max-w-3xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s">Become a part of Vidyut Vibes network and offer your electrical expertise to our growing community in  BBN Himachal Pradesh. Licensed electricians welcome.</p>
+                
+                <div>
+                    <a href="registerprovider.php" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold py-3 px-8 rounded-full text-lg transition duration-150 pulse-button" aria-label="Register as Electrical Service Provider">Apply Now</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="my-4">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 bg-slate-200 rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
+                    
+                    <div id="contact-left-panel" class="hidden lg:block relative bg-slate-900">
+                        <div class="energy-field" aria-hidden="true">
+                            <div class="energy-line"></div><div class="energy-line"></div><div class="energy-line"></div>
+                            <div class="energy-line"></div><div class="energy-line"></div><div class="energy-line"></div>
+                        </div>
+                        
+                        <div id="contact-text-anim-container" class="relative z-10 flex flex-col justify-center h-full p-2 text-white font-poppins text-center">
+                            <div class="anim-line text-4xl font-bold uppercase" style="animation-delay: 0.2s;">Professional</div>
+                            <div class="anim-line text-4xl font-bold uppercase text-amber-400" style="animation-delay: 0.4s;">Reliable</div>
+                            <div class="anim-line text-4xl font-bold uppercase" style="animation-delay: 0.6s;">Safe</div>
+                            <div class="anim-line text-2xl font-semibold uppercase mt-3" style="animation-delay: 0.5s;">Vidyut<span class="text-amber-400">Vibes</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 lg:py-2 bg-slate-300">
+                        <h2 class="text-4xl text-center font-bold text-black font-poppins mb-1">Get a Free Quote</h2>
+                        <p class="text-black text-center mb-3">Fill the form for a free electrical service quote.</p>
+                        
+                        <div>
+                            <div id="form-submission-message" class="hidden p-4 rounded-md text-center"></div>
+                        
+                            <form action="quote_process.php" method="POST" id="contactForm">
+                                <input type="hidden" name="_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8'); ?>">
+                                
+                                <div class="space-y-2">
+                                    <div>
+                                        <label for="name" class="block text-sm font-medium text-black">Full Name:</label>
+                                        <input type="text" name="name" id="name" required class="mt-1 block w-full px-5 py-2 border-2 border-gray-200 rounded-full shadow-sm text-slate-800 placeholder-gray-400 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all" placeholder="Enter your full name" aria-describedby="nameError">
+                                        <p id="nameError" class="text-red-500 text-xs mt-1 hidden">Please enter your full name.</p>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="phone" class="block text-sm font-medium text-black">Phone Number:</label>
+                                      <input type="tel" name="phone" id="phone" maxlength="10" pattern="^[0-9]{10}$" required class="mt-1 block w-full px-5 py-2 border-2 border-gray-200 rounded-full shadow-sm text-slate-800 placeholder-gray-400 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all" placeholder="Enter 10-digit phone number" aria-describedby="phoneError">
+                                        <p id="phoneError" class="text-red-500 text-xs mt-1 hidden">Please enter a valid 10-digit phone number.</p>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="address" class="block text-sm font-medium text-black">Address in Nalagarh:</label>
+                                        <input type="text" name="address" id="address" required class="mt-1 block w-full px-5 py-2 border-2 border-gray-200 rounded-full shadow-sm text-slate-800 placeholder-gray-400 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all" placeholder="Enter your address " aria-describedby="addressError">
+                                        <p id="addressError" class="text-red-500 text-xs mt-1 hidden">Please enter your address.</p>
+                                    </div>
+                                    
+                                    <div>
+                                        <fieldset class="mt-1">
+                                            <legend class="block text-sm font-medium text-black mb-2">Electrical Service Needed</legend>
+                                           <div class="grid grid-cols-2 gap-x-4 gap-y-2 pt-1">
+                                                <div>
+                                                    <label for="residential_wiring_final" class="flex items-center cursor-pointer">
+                                                        <input type="checkbox" id="residential_wiring_final" name="service[]" value="residential_wiring" class="h-4 w-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500">
+                                                        <span class="ml-2 text-sm text-black">Residential Electrical Wiring</span>
+                                                    </label>
+                                                </div>
+                                               
+                                                <div>
+                                                    <label for="tv_installation_final" class="flex items-center cursor-pointer">
+                                                        <input type="checkbox" id="tv_installation_final" name="service[]" value="tv_installation" class="h-4 w-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500">
+                                                        <span class="ml-2 text-sm text-black">LED TV Wall Mounting</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label for="inverter_installation_final" class="flex items-center cursor-pointer">
+                                                        <input type="checkbox" id="inverter_installation_final" name="service[]" value="inverter_installation" class="h-4 w-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500">
+                                                        <span class="ml-2 text-sm text-black">Inverter Installation</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label for="led_installation_final" class="flex items-center cursor-pointer">
+                                                        <input type="checkbox" id="led_installation_final" name="service[]" value="led_installation" class="h-4 w-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500">
+                                                        <span class="ml-2 text-sm text-black">LED Light Installation</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label for="ac_installation_final" class="flex items-center cursor-pointer">
+                                                        <input type="checkbox" id="ac_installation_final" name="service[]" value="ac_switchbox_installation" class="h-4 w-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500">
+                                                        <span class="ml-2 text-sm text-black">AC Electrical Setup</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label for="other_service_final" class="flex items-center cursor-pointer">
+                                                        <input type="checkbox" id="other_service_final" name="service[]" value="other" class="h-4 w-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500">
+                                                        <span class="ml-2 text-sm text-black">Other Electrical Work</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <p id="serviceError" class="text-red-500 text-xs mt-1 hidden">Please select at least one service.</p>
+                                        </fieldset>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="message" class="block text-sm font-medium text-black">Your Electrical Requirements (Optional)</label>
+                                        <textarea id="message" name="message" rows="2" class="mt-1 block w-full px-5 py-2 border-2 border-gray-200 rounded-xl shadow-sm text-black placeholder-gray-400 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all" placeholder="Describe your electrical issue or requirement in detail..."></textarea>
+                                    </div>
+                                    
+                                    <div class="pt-1">
+                                       <button type="submit" class="w-full flex items-center justify-center py-2 px-4 border border-transparent rounded-full shadow-lg text-lg font-bold text-black bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                                            Get Free Quote
+                                            <svg class="ml-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.28a.75.75 0 011.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 pt-5 pb-4">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="col-span-2 md:col-span-1">
+                    <span class="text-2xl font-bold text-white font-poppins">Vidyut<span class="text-amber-400">Vibes</span></span>
+                    <p class="text-sm mb-4">Providing top-quality electrical services in Nalagarh, Himachal Pradesh. Our commitment is to safety, efficiency, and customer satisfaction.</p>
+                    <p class="text-sm">© <?php echo date('Y'); ?> Vidyut Vibes. All rights reserved.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4 font-poppins">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.php" class="hover:text-amber-400 transition" aria-label="Home">Home</a></li>
+                        <li><a href="services.php" class="hover:text-amber-400 transition" aria-label="Services">Services</a></li>
+                        <li><a href="registerprovider.php" class="hover:text-amber-400 transition" aria-label="Join as Provider">Join as Provider</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4 font-poppins">Contact Us</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><p>Nalagarh, Himachal Pradesh, 174101</p></li>
+                        <li><a href="tel:+919418744268" class="hover:text-amber-400 transition" aria-label="Phone Number">Phone: +919418744268</a></li>
+                        <li><a href="mailto:vidyutvibes@gmail.com" class="hover:text-amber-400 transition" aria-label="Email">Email: vidyutvibes@gmail.com.</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="index.js?v=<?php echo filemtime('index.js'); ?>" defer></script>
 </body>
 </html>
